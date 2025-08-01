@@ -1,2 +1,49 @@
-# handwritten-prescription-recognition
-The Optical Character Recognition (OCR) system consists of a comprehensive neural network built using Python and TensorFlow that was trained on over 115,000 wordimages from the IAM On-Line Handwriting Database (IAM-OnDB). The neural network consists of 5 Convolutional Neural Network (CNN) layers, 2 Recurrent Neural Network (RNN) Layers, and a final Connectionist Temporal Classification (CTC) layer. As the input image is fed into the CNN layers, a non-linear ReLU function is applied to extract relevant features from the image. The ReLU function is preferred due to the lower likelihood of a vanishing gradient (which arises when network parameters and hyperparameters are not properly set) relative to a sigmoid function. In the case of the RNN layers, the Long Short-Term Memory (LSTM) implementation is used due to its ability to propagate information through long distances. The CTC is given the RNN output matrix and the ground truth text to compute the loss value and the mean of the loss values of the batch elements is used to train the OCR system. This means is fed into an RMSProp optimizer which is focused on minimizing the loss, and it does so in a very robust manner. For inference, the CTC layer decodes the RNN output matrix into the final text. The OCR system reports an accuracy rate of 95.7% for the IAM Test Dataset, but this accuracy falls to 89.4% for unseen handwritten doctors’ prescriptions. 
+# 📝 Handwritten Prescription Recognition using Deep Learning
+
+This project is an end-to-end Optical Character Recognition (OCR) system for recognizing handwritten medical prescriptions. Built using TensorFlow and Python, the system utilizes a hybrid deep learning architecture designed for sequence modeling and transcription of cursive handwriting.
+
+---
+
+## 📌 Overview
+
+The OCR system combines convolutional feature extraction, temporal sequence modeling, and Connectionist Temporal Classification (CTC) decoding to recognize handwritten words from scanned images.
+
+- Trained on over **115,000 word-images**
+- Achieved **95.7% accuracy** on IAM Test Dataset
+- Achieved **89.4% accuracy** on real-world doctor's prescriptions
+
+---
+
+## 🧠 Model Architecture
+
+| Component | Description |
+|----------|-------------|
+| **CNN Layers (5)** | Extract visual features from word images using ReLU activations |
+| **RNN Layers (2)** | Bi-directional LSTM layers for temporal sequence modeling |
+| **CTC Layer** | Decodes sequences without needing character alignment |
+| **Optimizer** | RMSProp minimizing batch-wise CTC loss |
+
+---
+
+## 📂 Dataset
+
+- **Training:** [IAM On-Line Handwriting Database (IAM-OnDB)](http://www.fki.inf.unibe.ch/databases/iam-on-line-handwriting-database)
+- **Testing (real-world):** Scanned handwritten doctor prescriptions (custom dataset)
+
+---
+
+## 📈 Results
+
+| Dataset | Accuracy |
+|---------|----------|
+| IAM Test Set | 95.7% |
+| Real-world prescriptions | 89.4% |
+
+---
+
+## 🚀 How to Run
+
+1. Clone the repository
+2. Install dependencies
+```bash
+pip install tensorflow numpy matplotlib
